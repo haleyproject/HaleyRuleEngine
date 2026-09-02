@@ -1,4 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <HaleyProject Condition="'$(HaleyProject)' == ''">$(MSBuildProjectDirectory)\..\..</HaleyProject>
+  </PropertyGroup>
+  <Import Project="$(HaleyProject)\HaleyProject\Haley.Source.Props" />
+  <Import Project="$(HaleyProject)\HaleyProject\Haley.Version.Props" />
+  <Import Project="$(HaleyProject)\HaleyProject\Haley.Paths.Props" />
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -12,8 +18,8 @@
     <Description>A simple rule engine to process your busniess rules. The rule engine can be easily modified to meet your requirements.</Description>
     <Copyright>2020</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/TheHaleyProject/HaleyRuleEngine</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/rmsmech/HaleyProject</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/haleyproject/HaleyRuleEngine</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/haleyproject/HaleyRuleEngine</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>RuleEngine, ExpressionEngine, Haley,</PackageTags>
     <PackageReleaseNotes>Camelcase to pascal case</PackageReleaseNotes>
@@ -37,12 +43,10 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
-<Import Project="$(SolutionDir)ProjectReferences_$(SolutionName).txt" Condition="Exists('$(SolutionDir)ProjectReferences_$(SolutionName).txt')" />
 <Choose>
-    <When Condition="Exists($(HaleyExtensions))">
+    <When Condition="Exists('$(HaleyExtensionsProj)')">
       <ItemGroup>
-        <ProjectReference Include="$(HaleyExtensions)\HaleyExtensions.csproj">
+        <ProjectReference Include="$(HaleyExtensionsProj)">
           <Name>HaleyExtensions</Name>
         </ProjectReference>
       </ItemGroup>
